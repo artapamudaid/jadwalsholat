@@ -24,8 +24,6 @@ $citiesUrl = "https://jadwal-shalat-api.herokuapp.com/cities";
 $cities  = http_request($citiesUrl);
 
 $cities  = json_decode($cities, true);
-
-// var_dump($cities['data']);
 ?>
 
 <!doctype html>
