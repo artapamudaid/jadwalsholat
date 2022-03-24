@@ -94,6 +94,7 @@ $cities  = json_decode($cities, true);
                             <thead class="thead-inverse">
                                 <tr>
                                     <th>Tanggal</th>
+                                    <th>Imsak</th>
                                     <th>Subuh</th>
                                     <th>Dhuhur</th>
                                     <th>Asar</th>
@@ -102,11 +103,16 @@ $cities  = json_decode($cities, true);
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($jadwal['data']['data'] as $tanggal) : ?>
+                                <?php
+                                foreach ($jadwal['data']['data'] as $tanggal) :
+                                    $imsak = $tanggal['dataRow'][0]['time'];
+                                    $imsak = strtotime("-10 minutes", strtotime($imsak));
+                                ?>
                                     <tr>
                                         <td><?= $tanggal['date'] ?></td>
-                                        <?php foreach ($tanggal['dataRow'] as $waktu) : ?>
-                                            <td><?= $waktu['time']; ?></td>
+                                        <td><?= date('H:i', $imsak) ?></td>
+                                        <?php foreach ($tanggal['dataRow'] as $waktuSholat) : ?>
+                                            <td><?= $waktuSholat['time']; ?></td>
                                         <?php endforeach ?>
                                     </tr>
                                 <?php endforeach ?>
